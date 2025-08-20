@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Boldsea Operational Profile (IR)",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entity"
+      }
+    },
+    "properties": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    },
+    "acts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/act"
+      }
+    },
+    "authoring": {
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "entities"
+  ],
+  "definitions": {
+    "entity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ]
+    },
+    "property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "range": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cardinality": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "constraints": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "type"
+      ]
+    },
+    "act": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "actor_role": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "effects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ]
+    }
+  }
+}

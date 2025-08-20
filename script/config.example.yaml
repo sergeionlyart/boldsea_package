@@ -1,0 +1,31 @@
+active_schemas:
+  - Definition
+  - Causal Relation
+  - Application Context
+  - Example
+  - Architectural Component
+  - Technical Process
+  - Algorithm
+  - Conceptual Model
+  - Principle
+  - Problem Solution
+  - Limitations And Challenges
+  - Functionality
+  - Capabilities
+  - System Integration
+  - Component Interaction
+  - Use Case
+  - Concept Implementation
+  - Code Snippet
+  - Enumeration
+  - Table Analysis
+  - Advantage Disadvantage
+
+llm:
+  model: gpt-5-pro
+  temperature: 0.2
+  max_tokens: 1800
+
+windows:
+  window_chars: 6000
+  overlap_chars: 600

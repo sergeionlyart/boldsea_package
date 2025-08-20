@@ -1,0 +1,136 @@
+{
+  "entities": [
+    {
+      "id": "Person",
+      "label": "Person",
+      "kind": "Entity",
+      "notes": "Базовая сущность участника деятельности"
+    },
+    {
+      "id": "Document",
+      "label": "Document",
+      "kind": "Entity",
+      "notes": "Документ как индивид сущности"
+    },
+    {
+      "id": "Action_Approve",
+      "label": "Approve",
+      "kind": "Action",
+      "notes": "Действие одобрения документа"
+    }
+  ],
+  "properties": [
+    {
+      "id": "name",
+      "label": "name",
+      "type": "Attribute",
+      "domain": "Person",
+      "datatype": "string",
+      "cardinality": "0..1"
+    },
+    {
+      "id": "spouse",
+      "label": "spouse",
+      "type": "Relation",
+      "domain": "Person",
+      "range": "Person",
+      "cardinality": "0..1"
+    },
+    {
+      "id": "status",
+      "label": "status",
+      "type": "Attribute",
+      "domain": "Document",
+      "datatype": "string",
+      "cardinality": "0..1"
+    },
+    {
+      "id": "approvedBy",
+      "label": "approvedBy",
+      "type": "Relation",
+      "domain": "Document",
+      "range": "Person",
+      "cardinality": "0..1"
+    }
+  ],
+  "acts": [
+    {
+      "id": "approve",
+      "label": "approve",
+      "actor_role": "manager",
+      "conditions": [
+        "exists(Document)",
+        "role(manager)"
+      ],
+      "effects": [
+        "set(Document.status,'approved')",
+        "link(Document, approvedBy, $$Actor)"
+      ]
+    }
+  ],
+  "authoring": {
+    "Definition": [
+      {
+        "term": "Event",
+        "text": "Единица фиксации изменения/значения, связанная с актором и зависимостями (Condition/Causals)."
+      },
+      {
+        "term": "Actor",
+        "text": "Идентификатор участника, создающего/различающего событие; обязателен для каждого события."
+      },
+      {
+        "term": "Action",
+        "text": "Распределённый во времени индивид (последовательность событий) с выделяемым событием-результатом."
+      },
+      {
+        "term": "Temporal DAG",
+        "text": "Хранилище событий и причинных связей (ориентированный ациклический граф)."
+      }
+    ],
+    "Comparison": [
+      {
+        "a": "Объектная онтология",
+        "b": "Событийная онтология",
+        "note": "Первая фокусируется на состояниях и таксономиях; вторая — на последовательностях событий и их обусловленности."
+      }
+    ],
+    "ArchitecturalComponent": [
+      {
+        "id": "Model",
+        "desc": "Упорядоченный список модельных событий и ограничений."
+      },
+      {
+        "id": "ReificationGraph",
+        "desc": "Предметный граф (конкретные события/значения)."
+      },
+      {
+        "id": "SemanticGraph",
+        "desc": "Граф событий и их семантических связей."
+      },
+      {
+        "id": "TemporalGraph",
+        "desc": "Темпоральные (causal) рёбра между событиями."
+      },
+      {
+        "id": "Condition/Causals",
+        "desc": "Логическое выражение и список обусловливающих событий."
+      },
+      {
+        "id": "DataflowExec",
+        "desc": "Исполнение моделей по готовности данных (реактивно)."
+      }
+    ],
+    "base_terms": [
+      "Entity",
+      "Individual",
+      "Attribute",
+      "Relation",
+      "Act",
+      "Role",
+      "Condition",
+      "Causals",
+      "Model",
+      "ReificationEvent"
+    ]
+  }
+}
